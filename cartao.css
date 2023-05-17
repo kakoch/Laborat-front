@@ -1,0 +1,158 @@
+
+.container{
+
+	border:1px solid black;
+	width:100%;
+}
+.head{
+	display: flex;
+	flex-direction: row;
+	margin: 5px;
+	border:3px solid black;
+	justify-content: center;
+	align-items: center;
+	
+}
+img{
+	height:30px;
+	margin: 30px;
+
+}
+#inspecao{
+	text-align: center;
+	font-size:30px;
+	margin-left:50px;
+	font-weight: bolder;
+	color:  rgb(5, 21, 233);
+}
+#nav1{
+	display: flex;
+	flex-direction: column;
+	margin: 10px;
+	padding: 10px;
+	border:3px solid black;
+	justify-content: center;
+	align-items: center;
+}
+.proc_codigo{
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	height: 30px;
+}
+#p_cod{
+	margin: 30px;
+	height: 22px;
+	border-radius: 5px;
+	border: 3px solid rgb(21, 27, 110);
+	text-align: center;
+	color: rgb(21, 27, 110);
+	font-weight: bolder;
+}
+.btn_proc{
+	background-color: rgb(76, 112, 231);
+	color: rgb(21, 27, 110);
+	width: 150px;
+	height: 30px;
+	border-radius: 5px;
+	border: 3px solid rgb(21, 27, 110);
+}
+.descricaoTrue{
+	background-color: rgb(124, 146, 218);
+	color: rgb(21, 27, 110);
+	width: 150px;
+	height: 20px;
+	border-radius: 5px;
+	border: 3px solid rgb(21, 27, 110);
+	align-items: center;
+	text-align: center;
+	margin: 5px;
+	padding: 2px;
+}
+.descricaoFalse{
+	background-color: rgb(124, 146, 218);
+	color: rgb(21, 27, 110);
+	width: 250px;
+	height: 20px;
+	border-radius: 5px;
+	border: 3px solid rgb(21, 27, 110);
+	align-items: center;
+	text-align: center;
+	margin: 5px;
+	padding: 2px;
+}
+#g_mi{
+	width: 100%;
+}
+.descricaoTolerancia{
+	background-color: rgb(124, 146, 218);
+	color: rgb(21, 27, 110);
+	width: 3px;
+	height: 20px;
+	border-radius: 5px;
+	border: 3px solid rgb(21, 27, 110);
+	align-items: center;
+	text-align: center;
+	margin: 5px;
+	padding: 2px;
+}
+.btns_amostra{
+	display: flex;
+	flex-direction: column;
+	margin: 10px;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+}
+.btn_btns{
+	display: flex;
+	flex-direction:row;
+	background-color: rgb(76, 112, 231);
+	color: rgb(21, 27, 110);
+	width: 50px;
+	border-radius: 5px;
+	border: 3px solid rgb(21, 27, 110);
+	text-align: center;
+}
+.btns{
+	display: flex;
+	flex-direction:row;
+	text-align: center;
+}
+.btn_btns:active,.btn_proc:active{
+	background-color: rgb(21, 27, 110);
+	color:  rgb(76, 112, 231);
+	border-radius: 5px;
+	border: 3px solid  rgb(76, 112, 231); 
+	text-align: center;
+}
+
+#i_selec{
+	text-align: center;
+	font-size:15px;
+	margin:10px;
+	font-weight: bolder;
+	color:  rgb(5, 21, 233);
+}
+#nav2{
+	display: flex;
+	flex-direction: column;
+	margin: 10px;
+	padding: 10px;
+	border:3px solid black;
+	justify-content: center;
+	align-items: center;
+}
+.campos_amostras{
+	text-align: center;
+	font-size:15px;
+	margin:1px;
+	font-weight: bolder;
+	width: 80px;
+	height: 30px;
+	background-color: rgb(197, 199, 226);
+	color:  rgb(5, 21, 233);
+	border-radius: 10px;
+	border: 3px solid rgb(21, 27, 110);
+}
