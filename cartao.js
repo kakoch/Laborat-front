@@ -1,18 +1,18 @@
 const array_cod = [
   {
-    "numero": 50641631,
+    "lote": 225031,
     "tolerancia": 7,
     "nome": 'Super 6 Plus',
     "gramatura": 320,
   },
   {
-    "numero": 50008841,
+    "lote": 218765,
     "tolerancia": 5,
     "nome": 'CMPC RC',
     "gramatura": 295,
   },
   {
-    "numero": 50462669,
+    "lote": 235868,
     "tolerancia": 2,
     "nome": 'TP White Plus',
     "gramatura": 275,
@@ -34,6 +34,8 @@ const q_amostra = document.getElementById("q_amostra")
 const aplic_gramature = document.getElementById("#aplic_gramature")
 const nav_array = [...document.querySelectorAll("#nav2")]
 const g_mi = [...document.querySelectorAll("#g_mi")]
+const inputs = document.getElementsByClassName('campos_amostras')
+const li = document.getElementById('d_g_i')
 
 //variaveis auxiliares
 let t = 1
@@ -49,11 +51,16 @@ function removeBtns() {
 }
 //função criar elemento campos para gramatura
 function criarElemento() {
+  const li = document.getElementById('d_g_i')
   const novoElemento = document.createElement('input')
+  const novoLabel = document.createElement('label',id)
+  novoLabel.setAttribute("class", "label_amostras")
+  novoLabel.innerHTML=id
   novoElemento.setAttribute("type", "number")
   novoElemento.setAttribute("id", id)
   novoElemento.setAttribute("class", "campos_amostras")
-  nav2.appendChild(novoElemento)
+  li.appendChild(novoLabel)
+  li.appendChild(novoElemento)
   t++
   id++
 }
@@ -62,18 +69,20 @@ function creatGgmiInsira() {
   const g_mi = document.createElement("div");
   g_mi.setAttribute("id", "g_mi");
   g_mi.setAttribute("class", "descricaoTrue");
-  g_mi.innerHTML = (`Insira um código!`)
+  g_mi.innerHTML = (`Insira um lote!`)
   nav1.appendChild(g_mi)
   const div_to = document.getElementById("#g_mi")
 }
 //função criar elemento campo quando codigo invalido
-function creatNextGgmiInsira() {
+function creatDivAprov() {
   const n_g_mi = document.createElement("div");
   n_g_mi.setAttribute("id", "n_g_mi");
-  n_g_mi.setAttribute("class", "aprov_reprov");
+  n_g_mi.setAttribute("class", "descricaoTolerancia");
+  //n_g_mi.innerHTML=(`Aprovado`);
   nav1.appendChild(n_g_mi)
-  const div_to = document.getElementById("#n_g_mi")
+  const div_n_g_mi = document.getElementById('n_g_mi')
 }
+
 //função criar elemento campo quando codigo valido
 function creatGgmiTolerances() {
   const g_mi = document.createElement("div");
@@ -85,10 +94,9 @@ function creatGgmiTolerances() {
 }
 //função criar elemento campo quando codigo não existe
 function creatGgmiCodNotEx() {
-  const g_mi = document.createElement("div");
-  g_mi.setAttribute("id", "g_mi");
-  g_mi.setAttribute("class", "descricaoFalse");
-  g_mi.innerHTML = `O código ${codigo_proc.value} não existe`;
+  
+  g_mi.setAttribute("class", "descricaoTolerancia");
+  g_mi.innerHTML = `O lote ${codigo_proc.value} não existe`;
   nav1.appendChild(g_mi);
   const div_to = document.getElementById("#g_mi")
 }
@@ -102,7 +110,7 @@ function handleEmptyInput() {
   }
 }
 
-function handleCodeFound(div_to) {
+function handleCodeFound() {
   const element = document.getElementById('g_mi'); 
   if (element) {
     element.remove();
@@ -127,22 +135,32 @@ function handleCodeNotFound() {
   }
 }
 function aprov_reprov(){
-  const n_g_mi = document.getElementById('n_g_mi'); 
-  if (retornoG == true  && !n_g_mi) {
-    
-    creatNextGgmiInsira()
-    n_g_mi.innerHTML(`Aprovado`);
-  }else if(retornoG == false && !n_g_mi){
-    n_g_mi.remove();
-    creatNextGgmiInsira()
-    n_g_mi.innerHTML(`Reprovado`);
+  const div_n_g_mi = document.getElementById('n_g_mi'); 
+  if (retornoG == true) {
+    if(div_n_g_mi == undefined){
+      creatDivAprov()
+      n_g_mi.innerHTML=(`Aprovado`);
+    }else{
+      div_n_g_mi.remove();
+      creatDivAprov()
+      n_g_mi.innerHTML=(`Aprovado`);
+    }
+  }else{
+    if(div_n_g_mi == undefined){
+      creatDivAprov()
+      n_g_mi.innerHTML=(`Reprovado`);
+    }else{
+      div_n_g_mi.remove();
+      creatDivAprov()
+      n_g_mi.innerHTML=(`Reprovado`);
+    }
   }
 }
 let itemVerificado = null;
 function procurar() {
   const numeroInput = document.getElementById('p_cod').value;
   const numeroFornecidoPeloUsuario = parseInt(numeroInput);
-  itemVerificado = array_cod.find(item => item.numero === numeroFornecidoPeloUsuario);
+  itemVerificado = array_cod.find(item => item.lote === numeroFornecidoPeloUsuario);
   if (itemVerificado) {
     handleCodeFound()
   } else {
@@ -151,6 +169,14 @@ function procurar() {
 }
 div_btns.addEventListener("click", (evt) => {
   removeBtns()
+  const t_g_mi = document.createElement('div');
+  t_g_mi.setAttribute("class", "inspecao")
+  t_g_mi.innerHTML=(`Insira a gramatura:`)
+  const g_i = document.createElement('div');
+  g_i.setAttribute("id", "d_g_i");
+  nav2.appendChild(t_g_mi)
+  nav2.appendChild(g_i)
+  
   while (t <= parseInt(evt.target.textContent)) {
     criarElemento()
     }
@@ -169,11 +195,17 @@ div_btns.addEventListener("click", (evt) => {
       var aux = parseFloat(inputs[i].value)
       soma = soma + aux
     }
-    console.log(resultado)
-    console.log(soma.toFixed(2))
-    console.log((soma/inputs.length).toFixed(2))
-      return resultado;
+    if(inputs.length > 0) {
+      if((soma/inputs.length).toFixed(2) > gMin && (soma/inputs.length).toFixed(2) < gMax){
+        retornoG = true;
+        aprov_reprov()
+      }else{
+        retornoG = false;
+        aprov_reprov()
+      }
     }
+    return resultado;
+  }
   
     function addButtonNextProcurar() {
       const btn_proc = document.getElementById("btn_proc");
@@ -181,16 +213,17 @@ div_btns.addEventListener("click", (evt) => {
         btn_proc.setAttribute("id", "aplic_gramature");
         btn_proc.innerHTML = "Aplicar gramatura";
         btn_proc.addEventListener("click", () => {
-          calculateGramature();
-          var array_result = [...calculateGramature()]
-        });
+            calculateGramature()
+        })
       }
     }
     
     if (btn_proc) {
       btn_proc.addEventListener("click", () => {
         procurar();
-        addButtonNextProcurar();
+        if(codigo_proc.value !== "") {
+          addButtonNextProcurar();
+        }
       });
     }
     
