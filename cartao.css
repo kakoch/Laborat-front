@@ -1,38 +1,56 @@
+body{
+	height: auto;
+    width: auto;
+    margin: 10px 50px 0px 50px;
+}
 
 .container{
-
+	
 	border:1px solid black;
-	width:100%;
+	width:auto;
+	height: auto;
+}
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+	-webkit-appearance: none;
+	margin: 0;
 }
 .head{
 	display: flex;
-	flex-direction: row;
-	margin: 5px;
-	border:3px solid black;
-	justify-content: center;
-	align-items: center;
-	
+    flex-direction: unset;
+    margin: 10px;
+    border: 3px solid #000;
+    justify-content: space-evenly;
+    align-items: center;
+	width: auto;
+}
+.corpo{
+	height: auto;
+	width: auto;
 }
 img{
 	height:30px;
 	margin: 30px;
 
 }
-#inspecao{
+.inspecao{
 	text-align: center;
 	font-size:30px;
 	margin-left:50px;
 	font-weight: bolder;
-	color:  rgb(5, 21, 233);
+	color:  #e74c3c;
 }
 #nav1{
 	display: flex;
-	flex-direction: column;
-	margin: 10px;
-	padding: 10px;
-	border:3px solid black;
-	justify-content: center;
-	align-items: center;
+    flex-direction: column;
+    margin: 10px;
+    padding: 10px;
+    border: 3px solid black;
+    justify-content: flex-start;
+    align-items: stretch;
+    width: auto;
+    flex-wrap: wrap;
+    align-content: space-around;
 }
 .proc_codigo{
 	display: flex;
@@ -42,86 +60,101 @@ img{
 	height: 30px;
 }
 #p_cod{
-	margin: 30px;
-	height: 22px;
-	border-radius: 5px;
-	border: 3px solid rgb(21, 27, 110);
-	text-align: center;
-	color: rgb(21, 27, 110);
-	font-weight: bolder;
+	margin: 5px;
+    height: 22px;
+    border: 3px solid #e74c3c;
+    text-align: center;
+    color: #e74c3c;
+    font-weight: bolder;
+    border-radius: 15px;
 }
 .btn_proc{
-	background-color: rgb(76, 112, 231);
-	color: rgb(21, 27, 110);
+	background-color: #000;
+	color: #e74c3c;
 	width: 150px;
 	height: 30px;
+	font-weight: bolder;
 	border-radius: 5px;
-	border: 3px solid rgb(21, 27, 110);
+	border: 3px solid #e74c3c;
 }
 .descricaoTrue{
-	background-color: rgb(124, 146, 218);
-	color: rgb(21, 27, 110);
+	background-color: #000;
+	color: #e74c3c;
 	width: 150px;
 	height: 20px;
 	border-radius: 5px;
-	border: 3px solid rgb(21, 27, 110);
+	border: 3px solid #e74c3c;
 	align-items: center;
 	text-align: center;
 	margin: 5px;
 	padding: 2px;
 }
-.descricaoFalse{
-	background-color: rgb(124, 146, 218);
-	color: rgb(21, 27, 110);
-	width: 250px;
-	height: 20px;
-	border-radius: 5px;
-	border: 3px solid rgb(21, 27, 110);
-	align-items: center;
-	text-align: center;
-	margin: 5px;
-	padding: 2px;
-}
+
 #g_mi{
-	width: 100%;
+	width: auto;
+	height: auto;
+	padding: 5px;
+	background-color: #000;
+}
+#d_g_i{
+	width: 35%;
+    height: 350px;
+    padding: 10px;
+    display: flex;
+    margin: 10px;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: stretch;
+    align-content: center;
+    justify-content: flex-start;
+}
+#n_g_mi{
+	width: auto;
+	height: auto;
+	padding: 5px;
+	background-color: #000;
 }
 .descricaoTolerancia{
-	background-color: rgb(124, 146, 218);
-	color: rgb(21, 27, 110);
+	color: #e74c3c;
 	width: 3px;
 	height: 20px;
 	border-radius: 5px;
-	border: 3px solid rgb(21, 27, 110);
+	border: 3px solid #e74c3c;
 	align-items: center;
 	text-align: center;
 	margin: 5px;
-	padding: 2px;
+	padding: 10px;
 }
 .btns_amostra{
 	display: flex;
 	flex-direction: column;
 	margin: 10px;
-	justify-content: center;
 	align-items: center;
-	text-align: center;
 }
 .btn_btns{
 	display: flex;
 	flex-direction:row;
-	background-color: rgb(76, 112, 231);
-	color: rgb(21, 27, 110);
-	width: 50px;
+	background-color: #000;
+	color: #e74c3c;
+	width: 80px;
+	height: 30px;
 	border-radius: 5px;
-	border: 3px solid rgb(21, 27, 110);
-	text-align: center;
+	font-weight: bolder;
+	border: 3px solid #e74c3c;
+	align-items: center;
+	border-radius: 15px;
+	margin: 5px;
+	padding-inline: 30px;
 }
 .btns{
 	display: flex;
 	flex-direction:row;
 	text-align: center;
+	align-items: center;
+
 }
 .btn_btns:active,.btn_proc:active{
-	background-color: rgb(21, 27, 110);
+	background-color: #000;
 	color:  rgb(76, 112, 231);
 	border-radius: 5px;
 	border: 3px solid  rgb(76, 112, 231); 
@@ -133,7 +166,7 @@ img{
 	font-size:15px;
 	margin:10px;
 	font-weight: bolder;
-	color:  rgb(5, 21, 233);
+	color:  #e74c3c;
 }
 #nav2{
 	display: flex;
@@ -145,14 +178,26 @@ img{
 	align-items: center;
 }
 .campos_amostras{
-	text-align: center;
-	font-size:15px;
-	margin:1px;
-	font-weight: bolder;
-	width: 80px;
-	height: 30px;
-	background-color: rgb(197, 199, 226);
-	color:  rgb(5, 21, 233);
-	border-radius: 10px;
-	border: 3px solid rgb(21, 27, 110);
+    display: flex;
+    text-align: center;
+    font-size: 15px;
+    font-weight: bolder;
+    width: 60px;
+    height: 25px;
+    background-color: #000;
+    color: #cf2e2e;
+    border-radius: 10px;
+    border: 3px solid #cf2e2e;
+}
+.label_amostras{
+	margin: 1px;
+    font-weight: bolder;
+    width: 60px;
+    height: 15px;
+    background-color: #000;
+    color: #cf2e2e;
+    border-radius: 10px;
+    border: 3px solid #cf2e2e;
+    text-align: center;
+    font-size: 12px;
 }
