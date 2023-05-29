@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Cadastro de Cartão </title>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="css/c_lote.css">
+</head>
+<body>
+	<div id="container" class="container" name="container">
+		<div name="corpo" class="corpo">
+			<div name="head" class="head">
+				<img src="img/logo.png">
+				<div class="titulo">Cadastro lote de cartão </div>
+			</div>
+			<div id="div-form" class="div-form">
+                <form class="form-form">
+                    <label for="numero_lote">Número do Lote do Cartão:</label>
+                    <input type="text" id="numero_lote" class="input-field" name="numero_lote" autocomplete="off"><br>
+                  
+                    <label for="fornecedor">Fornecedor:</label>
+                    <input type="text" id="fornecedor" class="input-field" name="fornecedor" autocomplete="off"><br>
+                    <ul id="sugestoes_fornecedor" class="sugestoes"></ul>
+                    <label for="nome_cartao">Nome do Cartão:</label>
+                    <input type="text" id="nome_cartao" class="input-field" name="nome_cartao" autocomplete="off"><br>
+                  
+                    <label for="gramatura">Gramatura:</label>
+                    <input type="text" id="gramatura" class="input-field" name="gramatura" autocomplete="off"><br>
+                  
+                    <label for="formato">Formato:</label>
+                    <input type="text" id="formato" class="input-field" name="formato" autocomplete="off"><br>
+                  
+                    <label for="of">OF:</label>
+                    <input type="text" id="of" class="input-field" name="of" autocomplete="off"><br>
+                  
+                    <label for="numero_bobinas">Número das Bobinas:</label>
+                    <input type="text" id="numero_bobinas" class="input-field" name="numero_bobinas" autocomplete="off"><br>
+                  
+                    <input class="sub_form" id="sub_form" type="submit" value="Cadastrar">
+                  </form>
+                  
+            </div>
+		</div>
+	</div>	
+	<script src="js/lote_cartao.js"></script>
+	
+</body>
+</html>
