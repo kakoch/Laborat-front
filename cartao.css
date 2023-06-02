@@ -1,6 +1,6 @@
 body{
 	height: auto;
-    width: auto;
+    width: 400px;
     margin: 10px 50px 0px 50px;
 }
 
@@ -16,7 +16,7 @@ input[type=number]::-webkit-outer-spin-button {
 }
 .head{
 	display: flex;
-    flex-direction: unset;
+	flex-direction: row;
     margin: 10px;
     border: 3px solid #000;
     justify-content: space-evenly;
@@ -28,8 +28,8 @@ input[type=number]::-webkit-outer-spin-button {
 	width: auto;
 }
 img{
-	height:30px;
-	margin: 30px;
+    width: 30%;
+    margin: 5px;
 
 }
 .inspecao{
@@ -65,6 +65,21 @@ img{
     color: #e74c3c;
     font-weight: bolder;
     border-radius: 15px;
+}
+#p_cod:focus{
+	background-color: #000;
+	color:  rgb(76, 112, 231);
+	border: 3px solid  rgb(76, 112, 231); 
+	
+}
+#p_cod:focus{
+	background-color: #000;
+	color:  rgb(76, 112, 231);
+	border: 3px solid  rgb(76, 112, 231); 
+}
+#p_cod:focus::placeholder{
+
+	color:  rgb(255, 255, 255); 
 }
 .btn_proc{
 	background-color: #000;
@@ -179,15 +194,16 @@ img{
 	align-items: center;
 }
 .label_amostras{
-	font-weight: bolder;
-	width: 28px;
-	height: 20px;
-	background-color: #000;
-	color: #cf2e2e;
-	border-radius: 10px;
-	border: 3px solid #cf2e2e;
-	text-align: center;
-	font-size: 18px;
+    font-weight: bolder;
+    width: 30px;
+    height: 20px;
+    background-color: #000;
+    color: #cf2e2e;
+    border-radius: 10px;
+    border: 3px solid #cf2e2e;
+    text-align: center;
+    font-size: 18px;
+    padding: 1px;
 }
 .campos_amostras{
 	display: block;
@@ -200,4 +216,38 @@ img{
     color: #cf2e2e;
     border-radius: 10px;
     border: 3px solid #cf2e2e;
+}
+.campos_amostras:focus{
+	background-color: #000;
+	color:  rgb(76, 112, 231);
+	border: 3px solid  rgb(76, 112, 231); 
+}
+.divBtCheck{
+	width: auto;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    flex-wrap: wrap;
+}
+.bt_check{
+	width: 88%;
+	height: auto;
+    display: block;
+    text-align: center;
+    font-size: 19px;
+    font-weight: bolder;
+    background-color: #000;
+    color: #cf2e2e;
+    border-radius: 10px;
+    border: 3px solid #cf2e2e;
+}
+.bt_check:active{
+    font-size: 19px;
+    font-weight: bolder;
+    background-color: #000;
+    border-radius: 10px;
+	background-color: #000;
+	color:  rgb(76, 112, 231);
+	border: 3px solid  rgb(76, 112, 231); 
 }

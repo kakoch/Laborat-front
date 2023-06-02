@@ -17,221 +17,238 @@ const array_cod = [
     "nome": 'Tripe White',
     "gramatura": 282,
   }
-]
-
+];
 
 // Botões
-const btn_8 = document.getElementById("i_8")
-const btn_10 = document.getElementById("i_10")
-const btn_13 = document.getElementById("i_13")
-const btn_proc = document.getElementById("btn_proc")
-//variaveis auxiliares
-let t = 1
-let k = 0
-let id = 1
-let resultado = []
-let array_result = []
+const btn_proc = document.getElementById("btn_proc");
+
+// Variáveis auxiliares
+let t = 1;
+let k = 0;
+let id = 1;
+let resultado = [];
+let array_result = [];
 let retornoG = false;
-// Input procurar
-const codigo_proc = document.getElementById("p_cod")
-const nav1 = document.getElementById("nav1")
-const nav2 = document.getElementById("nav2")
-const div_proc = document.getElementById("proc_codigo")
-const div_btns = document.getElementById("btns")
-const q_amostra = document.getElementById("q_amostra")
-const aplic_gramature = document.getElementById("#aplic_gramature")
-const nav_array = [...document.querySelectorAll("#nav2")]
-const g_mi = [...document.querySelectorAll("#g_mi")]
-const inputs = document.getElementsByClassName('campos_amostras')
-const li = document.getElementById('d_g_i')
-const divOnGramatures = document.getElementById(id)
+
+// Inputs
+const codigo_proc = document.getElementById("p_cod");
+const nav1 = document.getElementById("nav1");
+const nav2 = document.getElementById("nav2");
 
 // Funções
-//função criar elemento campos para gramatura
+
+// Função para criar elemento campos para gramatura
 function criarElemento() {
-  const li = document.getElementById('d_g_i')
-  const div = document.createElement('div')
-  div.setAttribute("id", id)
-  div.setAttribute("class", "divGramatures")
-  const novoElemento = document.createElement('input')
-  const novoLabel = document.createElement('label',id)
-  novoLabel.setAttribute("class", "label_amostras")
-  novoLabel.setAttribute("for", id)
-  novoLabel.innerHTML=id
-  novoElemento.setAttribute("type", "number")
-  novoElemento.setAttribute("id", id)
-  novoElemento.setAttribute("class", "campos_amostras")
-  li.appendChild(div)
-  div.appendChild(novoLabel)
-  div.appendChild(novoElemento)
-  id++
+  const li = document.getElementById('d_g_i');
+  const div = document.createElement('div');
+  div.setAttribute("id", id);
+  div.setAttribute("class", "divGramatures");
+  const novoElemento = document.createElement('input');
+  const novoLabel = document.createElement('label');
+  novoLabel.setAttribute("class", "label_amostras");
+  novoLabel.setAttribute("for", id);
+  novoLabel.innerHTML = id+`ª:`;
+  novoElemento.setAttribute("type", "number");
+  novoElemento.setAttribute("id", id);
+  novoElemento.setAttribute("class", "campos_amostras");
+  li.appendChild(div);
+  div.appendChild(novoLabel);
+  div.appendChild(novoElemento);
+  id++;
 }
-//função criar elemento campo quando codigo invalido
+
+// Função para criar elemento campo quando o código é inválido
 function creatGgmiInsira() {
   const g_mi = document.createElement("div");
   g_mi.setAttribute("id", "g_mi");
   g_mi.setAttribute("class", "descricaoTrue");
-  g_mi.innerHTML = (`Insira um lote!`)
-  nav1.appendChild(g_mi)
-  const div_to = document.getElementById("#g_mi")
+  g_mi.innerHTML = `Insira um lote!`;
+  nav1.appendChild(g_mi);
 }
-//função criar elemento campo quando codigo invalido
+function creatGgmiNotValid() {
+  const g_mi = document.createElement("div");
+  g_mi.setAttribute("id", "g_mi");
+  g_mi.setAttribute("class", "descricaoTrue");
+  g_mi.innerHTML = `Lote invalido!`;
+  nav1.appendChild(g_mi);
+}
+
+// Função para criar elemento campo quando o código é inválido
 function creatDivAprov() {
   const n_g_mi = document.createElement("div");
   n_g_mi.setAttribute("id", "n_g_mi");
   n_g_mi.setAttribute("class", "descricaoTolerancia");
-  //n_g_mi.innerHTML=(`Aprovado`);
-  nav1.appendChild(n_g_mi)
-  const div_n_g_mi = document.getElementById('n_g_mi')
+  nav1.appendChild(n_g_mi);
 }
 
-//função criar elemento campo quando codigo valido
+// Função para criar elemento campo quando o código é válido
 function creatGgmiTolerances() {
   const g_mi = document.createElement("div");
   g_mi.setAttribute("id", "g_mi");
   g_mi.setAttribute("class", "descricaoTolerancia");
   g_mi.innerHTML = `O cartão ${itemVerificado.nome} ${itemVerificado.gramatura} tem uma tolerância de ${itemVerificado.tolerancia}%`;
   nav1.appendChild(g_mi);
-  const div_to = document.getElementById("#g_mi")
 }
-//função criar elemento campo quando codigo não existe
+
+// Função para criar elemento campo quando o código não existe
 function creatGgmiCodNotEx() {
+  const g_mi = document.createElement("div");
+  g_mi.setAttribute("id", "g_mi");
   g_mi.setAttribute("class", "descricaoTolerancia");
   g_mi.innerHTML = `O lote ${codigo_proc.value} não existe`;
   nav1.appendChild(g_mi);
-  const div_to = document.getElementById("#g_mi")
 }
 
-//função criar campo lote vazio
-/*function handleEmptyInput() {
+// Função para lidar com campo lote vazio
+function handleEmptyInput() {
+  const div_to = document.getElementById('g_mi');
   if (div_to == undefined) {
     creatGgmiInsira();
   } else {
     creatGgmiInsira();
     div_to.remove();
   }
-}*/
+}
 
-//função criar campo se encontrar lote
+// Função para lidar com campo quando o código é encontrado
 function handleCodeFound() {
   const element = document.getElementById('g_mi'); 
   if (element) {
     element.remove();
-    creatGgmiTolerances()
-  }else{
-    creatGgmiTolerances()
+    creatGgmiTolerances();
+  } else {
+    creatGgmiTolerances();
   }
 }
 
-//função criar mensagem campo vazio 
+// Função para lidar com campo quando o código não é encontrado
 function handleCodeNotFound() {
   const g_mi = document.getElementById('g_mi');
   if (g_mi == undefined) {
-    creatGgmiInsira()
-  }else{
-    g_mi.remove()
-    creatGgmiInsira()
+    creatGgmiNotValid();
+  } else {
+    g_mi.remove();
+    creatGgmiNotValid();
   }
 }
-/*
-function aprov_reprov(){
+
+// Função para lidar com campo quando é aprovado ou reprovado
+function aprov_reprov() {
   const div_n_g_mi = document.getElementById('n_g_mi'); 
   if (retornoG == true) {
-    if(div_n_g_mi == undefined){
-      creatDivAprov()
-      n_g_mi.innerHTML=(`Aprovado`);
-    }else{
+    if (div_n_g_mi == undefined) {
+      creatDivAprov();
+      n_g_mi.innerHTML = `Aprovado`;
+    } else {
       div_n_g_mi.remove();
-      creatDivAprov()
-      n_g_mi.innerHTML=(`Aprovado`);
+      creatDivAprov();
+      n_g_mi.innerHTML = `Aprovado`;
     }
-  }else{
-    if(div_n_g_mi == undefined){
-      creatDivAprov()
-      n_g_mi.innerHTML=(`Reprovado`);
-    }else{
+  } else {
+    if (div_n_g_mi == undefined) {
+      creatDivAprov();
+      n_g_mi.innerHTML = `Reprovado`;
+    } else {
       div_n_g_mi.remove();
-      creatDivAprov()
-      n_g_mi.innerHTML=(`Reprovado`);
+      creatDivAprov();
+      n_g_mi.innerHTML = `Reprovado`;
     }
   }
 }
-*/
-//função de procurar o numero do lote
+
+// Função para adicionar o listener de evento ao bt_check
+let bt_check = null;
+function addEventBtCheck() {
+  if (bt_check !== null) {
+    bt_check.addEventListener("click", function() {
+      calculateGramature();
+    });
+  }
+}
+
+// Função para procurar o número do lote
 let itemVerificado = null;
 function procurar() {
   const numeroInput = document.getElementById('p_cod').value;
   const numeroFornecidoPeloUsuario = parseInt(numeroInput);
   itemVerificado = array_cod.find(item => item.lote === numeroFornecidoPeloUsuario);
   if (itemVerificado) {
-    handleCodeFound()
-    addButtonsGramature()
+    handleCodeFound();
+    addButtonsGramature();
+    bt_check = document.getElementById('bt_check'); // Criar o elemento bt_check
+    addEventBtCheck(); // Adicionar o event listener após criar o elemento
   } else {
     handleCodeNotFound()
   }
 }
-//função dar titulo no conjunto de gramaturas
+
+// Função para dar título no conjunto de gramaturas
 function addTitleButtonsGramature() {
   const t_g_mi = document.createElement('div');
-  t_g_mi.setAttribute("class", "inspecao")
-  t_g_mi.innerHTML=(`Insira a gramatura:`)
+  t_g_mi.setAttribute("class", "inspecao");
+  t_g_mi.innerHTML = `Insira a gramatura:`;
   const g_i = document.createElement('div');
   g_i.setAttribute("id", "d_g_i");
-  nav2.appendChild(t_g_mi)
-  nav2.appendChild(g_i)
+  nav2.appendChild(t_g_mi);
+  nav2.appendChild(g_i);
 }
-//função adicionar os campos de inserir gramatura
-function addButtonsGramature(){
-  const campos_amostras = [...document.getElementsByClassName('campos_amostras')]
-  if(campos_amostras == ''){
-    addTitleButtonsGramature()
+
+// Função para criar botão de verificação de gramatura
+function buttonCheckGramature() {
+  const divBtCheck = document.createElement('div');
+  divBtCheck.setAttribute("class", "divBtCheck");
+  const btCheck = document.createElement('button');
+  btCheck.setAttribute("id", "bt_check");
+  btCheck.setAttribute("class", "bt_check");
+  btCheck.innerHTML = `Verificar gramatura`;
+  nav2.appendChild(divBtCheck);
+  divBtCheck.appendChild(btCheck);
+}
+
+// Função para adicionar os campos de inserir gramatura
+function addButtonsGramature() {
+  const campos_amostras = [...document.getElementsByClassName('campos_amostras')];
+  if (campos_amostras.length === 0) {
+    addTitleButtonsGramature();
+    buttonCheckGramature();
     for (let o = 0; o < 15; o++) {
-      criarElemento()
+      criarElemento();
     }
   }
-  
 }
-//função calcular gramatura
-  function calculateGramature() {
-    var div = document.getElementById('nav2');
-    var inputs = div.getElementsByClassName('campos_amostras');
-    resultado = [];
-    aux= 0,00;
-    soma = parseInt(0);
-    for (var i = 0; i < inputs.length; i++) {
-      var valor = parseFloat(inputs[i].value);
-      var gMax = (itemVerificado.gramatura + (itemVerificado.gramatura * (itemVerificado.tolerancia / 100))) ;
-      var gMin = (itemVerificado.gramatura - (itemVerificado.gramatura * (itemVerificado.tolerancia / 100)));
-      var aux = parseFloat(inputs[i].value)
-      soma = soma + aux
-    }
-    if(inputs.length > 0) {
-      if((soma/inputs.length).toFixed(2) > gMin && (soma/inputs.length).toFixed(2) < gMax){
-        retornoG = true;
-        aprov_reprov()
-      }else{
-        retornoG = false;
-        aprov_reprov()
-      }
-    }
-    return resultado;
+
+// Função para calcular a gramatura
+function calculateGramature() {
+  const div = document.getElementById('nav2');
+  const inputs = div.getElementsByClassName('campos_amostras');
+  resultado = [];
+  let aux = 0.00;
+  let soma = parseInt(0);
+  let valor, gMax, gMin = 0;
+  for (let i = 0; i < inputs.length; i++) {
+    valor = parseFloat(inputs[i].value);
+    gMax = (itemVerificado.gramatura + (itemVerificado.gramatura * (itemVerificado.tolerancia / 100)));
+    gMin = (itemVerificado.gramatura - (itemVerificado.gramatura * (itemVerificado.tolerancia / 100)));
+    aux = parseFloat(inputs[i].value);
+    soma = soma + aux;
   }
-  //if de teste perdido dando erro, mover e corrigir
-  if (btn_proc) {
-    btn_proc.addEventListener("click", () => {
-      procurar();
-      if(codigo_proc.value !== "") {
-        
-      }
-    });
-  }
-  /*function addButtonNextProcurar() {
-    const btn_proc = document.getElementById("btn_proc");
-    if (btn_proc) {
-      btn_proc.setAttribute("id", "aplic_gramature");
-      btn_proc.innerHTML = "Aplicar gramatura";
-      btn_proc.addEventListener("click", () => {
-          calculateGramature()
-      })
+  if (inputs.length > 0) {
+    if ((soma / inputs.length).toFixed(2) > gMin && (soma / inputs.length).toFixed(2) < gMax) {
+      retornoG = true;
+      aprov_reprov();
+    } else {
+      retornoG = false;
+      aprov_reprov();
     }
-  }*/
+  }
+  return resultado;
+}
+
+// Event listener no botão procurar
+btn_proc.addEventListener("click", () => {
+  if (codigo_proc.value == "") {
+    handleEmptyInput()
+   }else{
+    procurar();
+   }
+});

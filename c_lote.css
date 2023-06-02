@@ -1,6 +1,6 @@
 body{
 	height: auto;
-    width: auto;
+    width: 400px;
     margin: 10px 50px 0px 50px;
 }
 
@@ -30,8 +30,8 @@ input[type=number]::-webkit-outer-spin-button {
 	width: auto;
 }
 img{
-	height:30px;
-	margin: 10px;
+    width: 20%;
+    margin: 5px;
 }
 .titulo{
     text-align: center;
@@ -70,6 +70,7 @@ img{
     border: 2px #cf2e2e solid;
     border-radius: 5px;
     font-weight: bolder;
+    height: auto;
 }
 .sub_form:active{
     background: #cf2e2e;
