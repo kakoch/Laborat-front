@@ -2,6 +2,7 @@ body{
 	height: auto;
     width: 400px;
     margin: 10px 50px 0px 50px;
+	background-color: #cfd2e0;
 }
 
 .container{
@@ -67,22 +68,22 @@ img{
     border-radius: 15px;
 }
 #p_cod:focus{
-	background-color: #000;
-	color:  rgb(76, 112, 231);
-	border: 3px solid  rgb(76, 112, 231); 
+	background-color: #f0f0f0;
+	color:  rgb(0, 16, 96);
+	border: 3px solid  rgb(0, 16, 96); 
 	
 }
 #p_cod:focus{
-	background-color: #000;
-	color:  rgb(76, 112, 231);
-	border: 3px solid  rgb(76, 112, 231); 
+	background-color: #f0f0f0;
+	color:  rgb(0, 16, 96);
+	border: 3px solid  rgb(0, 16, 96); 
 }
 #p_cod:focus::placeholder{
 
 	color:  rgb(255, 255, 255); 
 }
 .btn_proc{
-	background-color: #000;
+	background-color: #f0f0f0;
 	color: #e74c3c;
 	width: 150px;
 	height: 30px;
@@ -91,7 +92,7 @@ img{
 	border: 3px solid #e74c3c;
 }
 .descricaoTrue{
-	background-color: #000;
+	background-color: #f0f0f0;
 	color: #e74c3c;
 	width: 150px;
 	height: 20px;
@@ -103,17 +104,17 @@ img{
 	padding: 2px;
 }
 
-#g_mi{
+#mensageResultLote{
 	width: auto;
 	height: auto;
 	padding: 5px;
-	background-color: #000;
+	background-color: #f0f0f0;
 }
-#n_g_mi{
+#msgResultCalculate{
 	width: auto;
 	height: auto;
 	padding: 5px;
-	background-color: #000;
+	background-color: #f0f0f0;
 }
 .descricaoTolerancia{
 	color: #e74c3c;
@@ -135,7 +136,7 @@ img{
 .btn_btns{
 	display: flex;
 	flex-direction:row;
-	background-color: #000;
+	background-color: #f0f0f0;
 	color: #e74c3c;
 	width: 80px;
 	height: 30px;
@@ -155,10 +156,10 @@ img{
 	
 }
 .btn_btns:active,.btn_proc:active{
-	background-color: #000;
-	color:  rgb(76, 112, 231);
+	background-color: #f0f0f0;
+	color:  rgb(0, 16, 96);
 	border-radius: 5px;
-	border: 3px solid  rgb(76, 112, 231); 
+	border: 3px solid  rgb(0, 16, 96); 
 	text-align: center;
 }
 
@@ -176,7 +177,7 @@ img{
 	justify-content: center;
 	align-items: center;
 }
-#d_g_i{
+#idDivGramatures{
     grid-gap: 7px;
     width: auto;
     height: 180px;
@@ -197,7 +198,7 @@ img{
     font-weight: bolder;
     width: 30px;
     height: 20px;
-    background-color: #000;
+    background-color: #f0f0f0;
     color: #cf2e2e;
     border-radius: 10px;
     border: 3px solid #cf2e2e;
@@ -212,15 +213,15 @@ img{
     font-weight: bolder;
     width: 50px;
     height: 20px;
-    background-color: #000;
+    background-color: #f0f0f0;
     color: #cf2e2e;
     border-radius: 10px;
     border: 3px solid #cf2e2e;
 }
 .campos_amostras:focus{
-	background-color: #000;
-	color:  rgb(76, 112, 231);
-	border: 3px solid  rgb(76, 112, 231); 
+	background-color: #f0f0f0;
+	color:  rgb(0, 16, 96);
+	border: 3px solid  rgb(0, 16, 96); 
 }
 .divBtCheck{
 	width: auto;
@@ -237,7 +238,7 @@ img{
     text-align: center;
     font-size: 19px;
     font-weight: bolder;
-    background-color: #000;
+    background-color: #f0f0f0;
     color: #cf2e2e;
     border-radius: 10px;
     border: 3px solid #cf2e2e;
@@ -245,9 +246,13 @@ img{
 .bt_check:active{
     font-size: 19px;
     font-weight: bolder;
-    background-color: #000;
+    background-color: #f0f0f0;
     border-radius: 10px;
-	background-color: #000;
-	color:  rgb(76, 112, 231);
-	border: 3px solid  rgb(76, 112, 231); 
+	color:  rgb(0, 16, 96);
+	border: 3px solid  rgb(0, 16, 96); 
+}
+.listTeste{
+	align-items: center;
+	text-align: center;
+	justify-content: center;
 }

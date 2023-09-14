@@ -1,4 +1,4 @@
-const array_cod = [
+const array_lotes = [
   {
     "lote": 225031,
     "tolerancia": 7,
@@ -23,28 +23,28 @@ const array_cod = [
 const btn_proc = document.getElementById("btn_proc");
 
 // Variáveis auxiliares
-let t = 1;
-let k = 0;
-let id = 1;
-let resultado = [];
-let array_result = [];
-let retornoG = false;
+const t = 1;
+const k = 0;
+let id = 1; //id of the createInputsGramature()
+const resultado = [];
+const array_result = [];
+let bt_check = null;
 
 // Inputs
-const codigo_proc = document.getElementById("p_cod");
+const findByCode = document.getElementById("p_cod");
 const nav1 = document.getElementById("nav1");
 const nav2 = document.getElementById("nav2");
 
-// Funções
+// Functions
 
 // Função para criar elemento campos para gramatura
-function criarElemento() {
-  const li = document.getElementById('d_g_i');
-  const div = document.createElement('div');
+function createInputsGramature() {
+  let li = document.getElementById('idDivGramatures');
+  let div = document.createElement('div');
   div.setAttribute("id", id);
   div.setAttribute("class", "divGramatures");
-  const novoElemento = document.createElement('input');
-  const novoLabel = document.createElement('label');
+  let novoElemento = document.createElement('input');
+  let novoLabel = document.createElement('label');
   novoLabel.setAttribute("class", "label_amostras");
   novoLabel.setAttribute("for", id);
   novoLabel.innerHTML = id+`ª:`;
@@ -57,107 +57,70 @@ function criarElemento() {
   id++;
 }
 
-// Função para criar elemento campo quando o código é inválido
-function creatGgmiInsira() {
-  const g_mi = document.createElement("div");
-  g_mi.setAttribute("id", "g_mi");
-  g_mi.setAttribute("class", "descricaoTrue");
-  g_mi.innerHTML = `Insira um lote!`;
-  nav1.appendChild(g_mi);
-}
-function creatGgmiNotValid() {
-  const g_mi = document.createElement("div");
-  g_mi.setAttribute("id", "g_mi");
-  g_mi.setAttribute("class", "descricaoTrue");
-  g_mi.innerHTML = `Lote invalido!`;
-  nav1.appendChild(g_mi);
+//gerador de div
+function geraneratorDivs(id, texto, tagClass){
+  const div = document.createElement("div");
+  div.setAttribute("id", id);
+  div.setAttribute("class", tagClass);
+  div.innerHTML = texto;
+  nav1.appendChild(div);
 }
 
-// Função para criar elemento campo quando o código é inválido
-function creatDivAprov() {
-  const n_g_mi = document.createElement("div");
-  n_g_mi.setAttribute("id", "n_g_mi");
-  n_g_mi.setAttribute("class", "descricaoTolerancia");
-  nav1.appendChild(n_g_mi);
-}
-
-// Função para criar elemento campo quando o código é válido
-function creatGgmiTolerances() {
-  const g_mi = document.createElement("div");
-  g_mi.setAttribute("id", "g_mi");
-  g_mi.setAttribute("class", "descricaoTolerancia");
-  g_mi.innerHTML = `O cartão ${itemVerificado.nome} ${itemVerificado.gramatura} tem uma tolerância de ${itemVerificado.tolerancia}%`;
-  nav1.appendChild(g_mi);
-}
-
-// Função para criar elemento campo quando o código não existe
-function creatGgmiCodNotEx() {
-  const g_mi = document.createElement("div");
-  g_mi.setAttribute("id", "g_mi");
-  g_mi.setAttribute("class", "descricaoTolerancia");
-  g_mi.innerHTML = `O lote ${codigo_proc.value} não existe`;
-  nav1.appendChild(g_mi);
-}
-
-// Função para lidar com campo lote vazio
-function handleEmptyInput() {
-  const div_to = document.getElementById('g_mi');
+// Função para retornar mensagem caso campo de procura esteja vazio
+function caseEmptyInput() {
+  const div_to = document.getElementById('mensageResultLote');
+  let messageInsertLote = geraneratorDivs("mensageResultLote",`Insira um lote!`, "descricaoTrue" );
   if (div_to == undefined) {
-    creatGgmiInsira();
+    messageInsertLote;
   } else {
-    creatGgmiInsira();
+    messageInsertLote;
     div_to.remove();
   }
 }
 
-// Função para lidar com campo quando o código é encontrado
-function handleCodeFound() {
-  const element = document.getElementById('g_mi'); 
+// Função para retornar mensagem caso lote encontrado
+function caseCodeFound() {
+  const element = document.getElementById('mensageResultLote'); 
+  let setResultFindByLote = geraneratorDivs("mensageResultLote",`O cartão ${itemVerificado.nome} ${itemVerificado.gramatura} g/m² <br> tem uma tolerância de ${itemVerificado.tolerancia}%`, "descricaoTolerancia" );
   if (element) {
     element.remove();
-    creatGgmiTolerances();
+    setResultFindByLote;
   } else {
-    creatGgmiTolerances();
+    setResultFindByLote;
   }
 }
 
-// Função para lidar com campo quando o código não é encontrado
-function handleCodeNotFound() {
-  const g_mi = document.getElementById('g_mi');
-  if (g_mi == undefined) {
-    creatGgmiNotValid();
+// Função para retornar mensagem caso campo de procura esteja vazio
+function caseCodeNotFound() {
+  const mensageResultLote = document.getElementById('mensageResultLote');
+  let messageInvalidLote = geraneratorDivs("mensageResultLote",`Lote invalido!`, "descricaoTrue" );
+  if (mensageResultLote == undefined) {
+    messageInvalidLote;
   } else {
-    g_mi.remove();
-    creatGgmiNotValid();
+    mensageResultLote.remove();
+    messageInvalidLote;
   }
 }
 
-// Função para lidar com campo quando é aprovado ou reprovado
-function aprov_reprov() {
-  const div_n_g_mi = document.getElementById('n_g_mi'); 
-  if (retornoG == true) {
-    if (div_n_g_mi == undefined) {
-      creatDivAprov();
-      n_g_mi.innerHTML = `Aprovado`;
-    } else {
-      div_n_g_mi.remove();
-      creatDivAprov();
-      n_g_mi.innerHTML = `Aprovado`;
-    }
-  } else {
-    if (div_n_g_mi == undefined) {
-      creatDivAprov();
-      n_g_mi.innerHTML = `Reprovado`;
-    } else {
-      div_n_g_mi.remove();
-      creatDivAprov();
-      n_g_mi.innerHTML = `Reprovado`;
-    }
+function resultCalculationGramature(retornoG) {
+  const msgResultCalculate = document.getElementById('msgResultCalculate');
+  let statusMessage;
+  switch (retornoG) {
+    case true:
+      statusMessage = 'Resultado: aprovado';
+      break;
+    
+    case false:
+      statusMessage = 'Resultado: reprovado';
+      break;
   }
+  if (msgResultCalculate != undefined) {
+    msgResultCalculate.remove();
+  }
+  geraneratorDivs("msgResultCalculate", statusMessage, "descricaoTolerancia");
 }
 
 // Função para adicionar o listener de evento ao bt_check
-let bt_check = null;
 function addEventBtCheck() {
   if (bt_check !== null) {
     bt_check.addEventListener("click", function() {
@@ -168,29 +131,29 @@ function addEventBtCheck() {
 
 // Função para procurar o número do lote
 let itemVerificado = null;
-function procurar() {
+function findLote() {
   const numeroInput = document.getElementById('p_cod').value;
   const numeroFornecidoPeloUsuario = parseInt(numeroInput);
-  itemVerificado = array_cod.find(item => item.lote === numeroFornecidoPeloUsuario);
+  itemVerificado = array_lotes.find(item => item.lote === numeroFornecidoPeloUsuario);
   if (itemVerificado) {
-    handleCodeFound();
+    caseCodeFound();
     addButtonsGramature();
     bt_check = document.getElementById('bt_check'); // Criar o elemento bt_check
     addEventBtCheck(); // Adicionar o event listener após criar o elemento
   } else {
-    handleCodeNotFound()
+    caseCodeNotFound()
   }
 }
 
-// Função para dar título no conjunto de gramaturas
+// Função para add título no conjunto de gramaturas
 function addTitleButtonsGramature() {
-  const t_g_mi = document.createElement('div');
-  t_g_mi.setAttribute("class", "inspecao");
-  t_g_mi.innerHTML = `Insira a gramatura:`;
-  const g_i = document.createElement('div');
-  g_i.setAttribute("id", "d_g_i");
-  nav2.appendChild(t_g_mi);
-  nav2.appendChild(g_i);
+  const title = document.createElement('div');
+  title.setAttribute("class", "inspecao");
+  title.innerHTML = `Insira a gramatura:`;
+  const divInputsGramatures = document.createElement('div');
+  divInputsGramatures.setAttribute("id", "idDivGramatures");
+  nav2.appendChild(title);
+  nav2.appendChild(divInputsGramatures);
 }
 
 // Função para criar botão de verificação de gramatura
@@ -205,14 +168,14 @@ function buttonCheckGramature() {
   divBtCheck.appendChild(btCheck);
 }
 
-// Função para adicionar os campos de inserir gramatura
+// Função para adicionar os campos para inserir gramatura
 function addButtonsGramature() {
   const campos_amostras = [...document.getElementsByClassName('campos_amostras')];
   if (campos_amostras.length === 0) {
     addTitleButtonsGramature();
     buttonCheckGramature();
-    for (let o = 0; o < 15; o++) {
-      criarElemento();
+    for (let o = 0; o < 3; o++) {
+      createInputsGramature();
     }
   }
 }
@@ -221,7 +184,6 @@ function addButtonsGramature() {
 function calculateGramature() {
   const div = document.getElementById('nav2');
   const inputs = div.getElementsByClassName('campos_amostras');
-  resultado = [];
   let aux = 0.00;
   let soma = parseInt(0);
   let valor, gMax, gMin = 0;
@@ -232,23 +194,28 @@ function calculateGramature() {
     aux = parseFloat(inputs[i].value);
     soma = soma + aux;
   }
+  responseCalculateGramature(soma, gMax, gMin);
+}
+// Função para retornar se aprovado ou reprovado o calculo de gramatura
+function responseCalculateGramature(soma, gMax, gMin) {
+  const div = document.getElementById('nav2');
+  const inputs = div.getElementsByClassName('campos_amostras');
   if (inputs.length > 0) {
+    let retornoG = false;
     if ((soma / inputs.length).toFixed(2) > gMin && (soma / inputs.length).toFixed(2) < gMax) {
-      retornoG = true;
-      aprov_reprov();
+       retornoG = true;
     } else {
-      retornoG = false;
-      aprov_reprov();
+       retornoG = false;
     }
+    resultCalculationGramature(retornoG);
   }
-  return resultado;
 }
 
-// Event listener no botão procurar
+// Add Event listener no botão procurar
 btn_proc.addEventListener("click", () => {
-  if (codigo_proc.value == "") {
-    handleEmptyInput()
+  if (findByCode.value == "") {
+    caseEmptyInput()
    }else{
-    procurar();
+    findLote();
    }
 });
